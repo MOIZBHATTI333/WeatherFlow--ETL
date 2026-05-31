@@ -3,11 +3,10 @@ import os
 from sqlalchemy import create_engine, text
 
 # PostgreSQL connection details
-DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "5432")
-DB_NAME = os.getenv("DB_NAME", "weather_db")
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "221334")
+DB_URL = os.getenv("DATABASE_URL")
+
+if not DB_URL:
+    raise ValueError("DATABASE_URL not found in .env file")
 
 def create_database():
     """Create the weather_db database if it doesn't exist."""
